@@ -4,151 +4,318 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>David Byrne gallery</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-
+    <title>Interactive Art Page with Advanced Controls</title>
     <style>
-        /* *{border:2px red solid} */
-
-        .container {
-            height: 880px;
-            width: 1200px;
-        }
-
-        nav {
-            background-color: black;
-        }
-
-        nav ul {
-            list-style: none;
+        body {
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
         }
 
-        nav ul li {
-            display: inline-block;
-            padding: 1em;
+        .container {
+            width: 90%;
+            margin: 0 auto;
+            padding: 20px;
         }
 
-        nav ul li a {
-            text-decoration: none;
-            color: red;
-            font-family: chalkduster, sans-serif;
-            font-size: 50px;
-            font-weight: 200;
-            text-transform: uppercase;
-        }
-
-        nav ul li a:hover {
-            color: green;
-        }
-
-        nav ul li a:active {
-            color: white;
-        }
-
-        .Hero {
-            width: 313px;
-            height: 313px;
-            pad: 20px;
-            background-image: url("Images/David_Byrne_CU.jpg");
-            margin-left: 100px;
-            margin-right: 100px;
-            background-repeat: no-repeat;
-        }
-
-        .Video {
-            width: 640px;
-            height: 360px;
-            background-size: cover;
-            float: right;
-            pad: 20px;
-            background-image: url("images/DB_SnakeDance.gif");
-            background-position-y: 40px;
-            background-position-y: center;
-            background-repeat: no-repeat
-        }
-
-        body {
-            font-family: 'Gill Sans', sans-serif;
-            color: skyblue;
-            background-color: black;
-        }
-
-        .bio {
-            width: 480px;
-            height: 250px;
-            font-size: 19px;
-            font-family: 'Gill Sans', sans-serif;
-            float: left;
-            pad: 20px;
-            color: skyblue;
-            margin: 10px;
-            width: 100%
-        }
-
-        .caption {
-            width: 635px;
-            height: 100px;
-            font-family: gill sans;
-            font-size: 20px;
-            color: skyblue;
-            margin: 10px;
+        header,
+        footer {
             text-align: center;
+            background-color: #f4f4f4;
+            padding: 10px 0;
         }
 
-        .footer {
-            text-align: center;
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .card {
-            color: skyblue;
-            background: black;
-            font-family: 'Gill Sans', sans-serif; height: 950px
+        #art-container {
+            position: relative;
+            width: 600px;
+            height: 600px;
+            border: 1px solid #ccc;
+            overflow: hidden;
+            background: linear-gradient(90deg, #ff7e5f, #feb47b);
+            transition: background 1s;
+        }
+
+        .art-image {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            transition: transform 0.2s, opacity 0.2s, filter 0.2s;
+        }
+
+        #controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .control-group1 {
+            display: grid;
+            gap: 10px;
+            float: left
+        }
+
+        .control-group2 {
+            display: grid;
+            gap: 10px;
+            float: center
+        }
+
+        .control-group3 {
+            display: grid;
+            gap: 10px;
+            float: right
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="range"] {
+            width: 100%;
+        }
+
+        .section {
+            height: 800px;
+            background-color: #f0f0f0;
+            margin: 20px 0;
         }
     </style>
 </head>
 
 <body>
-    <nav role="navigation">
-        <ul>
-            <li><a href="/Index.html">Homepage</a></li>
-            <li><a href="../Pages/Music.html">Music</a></li>
-            <li><a href="../Pages/Art.html">Art</a></li>
-            <li><a href="../Pages/Theatre.html">Theatre/Film</a></li>
-        </ul>
-    </nav>
-    <h1>Homepage </h1>
+    <div class="container">
+        <header>
+            <h1>Interactive Art Page with Advanced Controls</h1>
+        </header>
+        <main>
+            <div id="art-container">
+                <img src="Images/OTS_Camera-daniel-lee-4vOcfTXfdAI-unsplash.png" id="image1" class="art-image"
+                    alt="Art Image 1">
+                <img src="Images/Stickies_on_wall-brands-people-8ryz8T0bWx4-unsplash.png" id="image2" class="art-image"
+                    alt="Art Image 2">
+                <img src="Images/MidgetDance.gif" id="image3" class="art-image" alt="Art Image 3">
+            </div>
+            <div id="controls">
+                <div class="control-group1" id="controls-image1">
+                    <h3>Controls for Image 1</h3>
+                    <label for="blend-mode-image1">Blend Mode:</label>
+                    <select id="blend-mode-image1" class="blend-mode">
+                        <option value="normal">Normal</option>
+                        <option value="multiply">Multiply</option>
+                        <option value="screen">Screen</option>
+                        <option value="overlay">Overlay</option>
+                    </select>
 
+                    <label for="position-x-image1">Position X:</label>
+                    <input type="range" id="position-x-image1" class="position-x" name="position-x-image1" min="0"
+                        max="100">
+
+                    <label for="position-y-image1">Position Y:</label>
+                    <input type="range" id="position-y-image1" class="position-y" name="position-y-image1" min="0"
+                        max="100">
+
+                    <label for="scale-image1">Scale:</label>
+                    <input type="range" id="scale-image1" class="scale" name="scale-image1" min="0.5" max="2" step="0.1"
+                        value="1">
+
+                    <label for="opacity-image1">Opacity:</label>
+                    <input type="range" id="opacity-image1" class="opacity" name="opacity-image1" min="0" max="1"
+                        step="0.1" value="1">
+
+                    <label for="tint-image1">Color Tint:</label>
+                    <input type="range" id="tint-image1" class="tint" name="tint-image1" min="0" max="100" value="0">
+
+                    <label for="rotateX-image1">Rotate X:</label>
+                    <input type="range" id="rotateX-image1" class="rotateX" name="rotateX-image1" min="0" max="360"
+                        value="0">
+
+                    <label for="rotateY-image1">Rotate Y:</label>
+                    <input type="range" id="rotateY-image1" class="rotateY" name="rotateY-image1" min="0" max="360"
+                        value="0">
+                </div>
+            </div>
+            <div class="control-group2" id="controls-image2">
+                <h3>Controls for Image 2</h3>
+                <label for="blend-mode-image2">Blend Mode:</label>
+                <select id="blend-mode-image2" class="blend-mode">
+                    <option value="normal">Normal</option>
+                    <option value="multiply">Multiply</option>
+                    <option value="screen">Screen</option>
+                    <option value="overlay">Overlay</option>
+                </select>
+
+                <label for="position-x-image2">Position X:</label>
+                <input type="range" id="position-x-image2" class="position-x" name="position-x-image2" min="0"
+                    max="100">
+
+                <label for="position-y-image2">Position Y:</label>
+                <input type="range" id="position-y-image2" class="position-y" name="position-y-image2" min="0"
+                    max="100">
+
+                <label for="scale-image2">Scale:</label>
+                <input type="range" id="scale-image2" class="scale" name="scale-image2" min="0.5" max="2" step="0.1"
+                    value="1">
+
+                <label for="opacity-image2">Opacity:</label>
+                <input type="range" id="opacity-image2" class="opacity" name="opacity-image2" min="0" max="1" step="0.1"
+                    value="1">
+
+                <label for="tint-image2">Color Tint:</label>
+                <input type="range" id="tint-image2" class="tint" name="tint-image2" min="0" max="100" value="0">
+
+                <label for="rotateX-image2">Rotate X:</label>
+                <input type="range" id="rotateX-image2" class="rotateX" name="rotateX-image2" min="0" max="360"
+                    value="0">
+
+                <label for="rotateY-image2">Rotate Y:</label>
+                <input type="range" id="rotateY-image2" class="rotateY" name="rotateY-image2" min="0" max="360"
+                    value="0">
+            </div>
+
+            <div class="control-group3" id="controls-image3">
+                <h3>Controls for Image 3</h3>
+                <label for="blend-mode-image3">Blend Mode:</label>
+                <select id="blend-mode-image3" class="blend-mode">
+                    <option value="normal">Normal</option>
+                    <option value="multiply">Multiply</option>
+                    <option value="screen">Screen</option>
+                    <option value="overlay">Overlay</option>
+                </select>
+
+                <label for="position-x-image3">Position X:</label>
+                <input type="range" id="position-x-image3" class="position-x" name="position-x-image3" min="0"
+                    max="100">
+
+                <label for="position-y-image3">Position Y:</label>
+                <input type="range" id="position-y-image3" class="position-y" name="position-y-image3" min="0"
+                    max="100">
+
+                <label for="scale-image3">Scale:</label>
+                <input type="range" id="scale-image3" class="scale" name="scale-image3" min="0.5" max="2" step="0.1"
+                    value="1">
+
+                <label for="opacity-image3">Opacity:</label>
+                <input type="range" id="opacity-image3" class="opacity" name="opacity-image3" min="0" max="1" step="0.1"
+                    value="1">
+
+                <label for="tint-image3">Color Tint:</label>
+                <input type="range" id="tint-image3" class="tint" name="tint-image3" min="0" max="100" value="0">
+
+                <label for="rotateX-image3">Rotate X:</label>
+                <input type="range" id="rotateX-image3" class="rotateX" name="rotateX-image3" min="0" max="360"
+                    value="0">
+
+                <label for="rotateY-image3">Rotate Y:</label>
+                <input type="range" id="rotateY-image3" class="rotateY" name="rotateY-image3" min="0" max="360"
+                    value="0">
+            </div>
     </div>
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-6 mb-4">
-                <div class="card">
-                    <img src="Images/David_Byrne_CU.jpg" class="card-img-top" alt="Image 1">
-                    <div class="card-body">
-                        <p class="bio">David Byrne is a remarkable, multifaceted artist. Born in Scotland in 1952, Byrne
-                            holds British Scottish, Irish and United States citizenship. In 1976, Byrne, Chris Frantz
-                            and Tina Weymouth formed Talking Heads. Multi-instrumentalist Jerry Harrison joined the band
-                            in 1977 after they signed with Sire Records. Throughout the double-platinum success of the
-                            band, Byrne has released solo and collaborative work with the likes of Brian Eno and St.
-                            Vincent. He is also a visual and conceptual artist shown throughout the world. Moreover,
-                            Byrne has scored award-winning films ("The Last Emperor" with Ryuichi Sakamoto and Cong Su),
-                            cowritten musicals ("Here Lies Love" with Fatboy Slim) and movie theme songs ("This Is a
-                            Life" with Mitski, featured on the soundtrack of "Everything Everywhere All at Once)."</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 mb-4">
-                <div class="card">
-                    <img src="Images/DB_SnakeDance.gif" class="card-img-top" alt="Image 2">
-                    <div class="card-body">
-                        <h5 class="caption">"STOP MAKING SENSE"</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="footer">This is Creative Commons</div>    
+
+    </main>
+
+    <footer>
+        <div id="email-section">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+            <button id="send-email">Send Art</button>
+        </div>
+        <p>© Art by Juliet Wong</p>
+    </footer>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const images = document.querySelectorAll('.art-image');
+            const artContainer = document.getElementById('art-container');
+
+            images.forEach(image => {
+                const imageId = image.id;
+
+                const blendModeSelect = document.getElementById(`blend-mode-${imageId}`);
+                const positionXInput = document.getElementById(`position-x-${imageId}`);
+                const positionYInput = document.getElementById(`position-y-${imageId}`);
+                const scaleInput = document.getElementById(`scale-${imageId}`);
+                const opacityInput = document.getElementById(`opacity-${imageId}`);
+                const tintInput = document.getElementById(`tint-${imageId}`);
+                const rotateXInput = document.getElementById(`rotateX-${imageId}`);
+                const rotateYInput = document.getElementById(`rotateY-${imageId}`);
+
+                blendModeSelect.addEventListener('change', (e) => {
+                    image.style.mixBlendMode = e.target.value;
+                });
+
+                positionXInput.addEventListener('input', (e) => {
+                    image.style.left = `${e.target.value}%`;
+                });
+
+                positionYInput.addEventListener('input', (e) => {
+                    image.style.top = `${e.target.value}%`;
+                });
+
+                scaleInput.addEventListener('input', (e) => {
+                    image.style.transform = `scale(${e.target.value})`;
+                });
+
+                opacityInput.addEventListener('input', (e) => {
+                    image.style.opacity = e.target.value;
+                });
+
+                tintInput.addEventListener('input', (e) => {
+                    const tintValue = e.target.value;
+                    image.style.filter = `sepia(${tintValue / 200}) hue-rotate(${tintValue * 1.8}deg)`;
+                });
+
+                rotateXInput.addEventListener('input', (e) => {
+                    const rotateXValue = e.target.value;
+                    const rotateYValue = rotateYInput.value;
+                    image.style.transform = `rotateX(${rotateXValue}deg) rotateY(${rotateYValue}deg)`;
+                });
+
+                rotateYInput.addEventListener('input', (e) => {
+                    const rotateYValue = e.target.value;
+                    const rotateXValue = rotateXInput.value;
+                    image.style.transform = `rotateX(${rotateXValue}deg) rotateY(${rotateYValue}deg)`;
+                });
+            });
+
+            // Parallax scrolling effect
+            window.addEventListener('scroll', () => {
+                const scrollY = window.scrollY;
+
+                images.forEach((image, index) => {
+                    const speed = (index + 1) * 0.1;
+                    image.style.transform = `translateY(${scrollY * speed}px)`;
+                });
+            });
+
+            // Function to animate background gradient
+            const animateBackground = () => {
+                let gradientDegree = 0;
+                setInterval(() => {
+                    gradientDegree += 1;
+                    artContainer.style.background = `linear-gradient(${gradientDegree}deg, #ff7e5f, #feb47b)`;
+                }, 100);
+            };
+
+            animateBackground();
+
+            // Function to send email with snapshot (requires server-side code)
+            function sendEmail() {
+                const email = document.getElementById('email').value;
+                // Code to capture snapshot and send email
+            }
+
+            document.getElementById('send-email').addEventListener('click', sendEmail);
+        });
+    </script>
 </body>
 
 </html>
